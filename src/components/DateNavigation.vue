@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ArrowButton from './ArrowButton.vue'
+</script>
 
 <template>
   <div class="dateNavigation">
-    <div class="dateNavigation__arrow">&lt-</div>
+    <ArrowButton />
 
     <div class="dateNavigation__date date">
       <div class="date__details date-details">
@@ -15,7 +17,7 @@
       <div class="date__day">Thursday</div>
     </div>
 
-    <div class="dateNavigation__arrow">-></div>
+    <ArrowButton direction="right" />
   </div>
 </template>
 
