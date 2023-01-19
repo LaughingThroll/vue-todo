@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import MainCard from './components/MainCard.vue'
+import DateNavigation from './components/DateNavigation.vue'
 </script>
 
 <template>
   <main class="main">
     <MainCard>
       <template #header>
-        <div>Hello header</div>
+        <DateNavigation />
       </template>
       <template #body>
         <div>Hello Body</div>
