@@ -12,6 +12,35 @@ import TodoItem from './components/TodoItem.vue'
       </template>
       <template #body>
         <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" />
       </template>
       <template #footer>
         <div>Hello Footer</div>

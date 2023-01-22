@@ -17,13 +17,22 @@
   width: 320px;
   min-height: 400px;
   background-color: $white;
-  padding: 40px 14px;
+  padding: 40px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
 
   &__body {
-    margin: 40px 0 20px 0;
+    margin: 30px 0 20px 0;
+    max-height: 220px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  &__header,
+  &__body,
+  &__footer {
+    padding: 0 14px;
   }
 
   &__footer {
