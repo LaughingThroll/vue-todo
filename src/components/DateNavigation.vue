@@ -14,7 +14,6 @@ const getNextDate = (date: Date) => {
   const newDate = date.setDate(date.getDate() + DEFAULT_INTERVAL_DATE)
   currentDate.value = new Date(newDate)
 }
-console.log('currentDate', currentDate.value)
 </script>
 
 <template>
