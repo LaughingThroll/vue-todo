@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Check from './../assets/check.svg?component'
+import { ref, watch } from 'vue'
+import CheckIcon from './../assets/check.svg?component'
 
 interface CheckboxEmits {
   toggleCheckbox?: (isCompleted: boolean) => void
@@ -21,6 +21,13 @@ const isCompleted = ref(props.isCompleted)
 const toggleCheckbox = () => {
   isCompleted.value = !isCompleted.value
 }
+
+watch(
+  () => props.isCompleted,
+  (value: boolean) => {
+    isCompleted.value = value
+  }
+)
 </script>
 
 <template>
@@ -34,7 +41,7 @@ const toggleCheckbox = () => {
       }
     "
   >
-    <Check class="checkbox__icon" v-if="isCompleted" />
+    <CheckIcon class="checkbox__icon" v-if="isCompleted" />
   </button>
 </template>
 

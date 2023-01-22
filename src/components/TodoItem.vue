@@ -13,22 +13,22 @@ const props = withDefaults(defineProps<TodoItemProps>(), {
 
 const isCompleted = ref(props.isCompleted)
 
-const toggleTodoItem = (isOutCompleted: boolean) => {
-  isCompleted.value = isOutCompleted
+const toggleTodoItem = () => {
+  isCompleted.value = !isCompleted.value
 }
 </script>
 
 <template>
-  <div class="todoItem" :class="{ 'todoItem--isCompleted': isCompleted }">
+  <button
+    class="todoItem"
+    @click="toggleTodoItem"
+    :class="{ 'todoItem--isCompleted': isCompleted }"
+  >
     <div class="todoItem__content">{{ content }}</div>
     <div class="todoItem__actions">
-      <Checkbox
-        class="todoItem__action"
-        @toggle-checkbox="toggleTodoItem"
-        :is-completed="isCompleted"
-      />
+      <Checkbox class="todoItem__action" :is-completed="isCompleted" />
     </div>
-  </div>
+  </button>
 </template>
 
 <style scoped lang="scss">
