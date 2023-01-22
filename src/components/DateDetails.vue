@@ -1,12 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface DateDetailsProps {
+  date: Date
+}
+
+defineProps<DateDetailsProps>()
+
+const getNumberDay = (date: Date) => date.getDate()
+const getCurrentYear = (date: Date) => date.getFullYear()
+const getStringMonth = (date: Date) => {
+  return date.toLocaleDateString('default', { month: 'short' })
+}
+const getStringDay = (date: Date) => {
+  return date.toLocaleDateString('default', { weekday: 'long' })
+}
+</script>
 
 <template>
   <div class="date-details">
-    <div class="date-details__number-day">19</div>
-    <div class="date-details__other">
-      <div class="date-details__month">JAN</div>
-      <div class="date-details__year">2023</div>
+    <div class="date-details__inner">
+      <div class="date-details__number-day">{{ getNumberDay(date) }}</div>
+      <div class="date-details__other">
+        <div class="date-details__month">{{ getStringMonth(date) }}</div>
+        <div class="date-details__year">{{ getCurrentYear(date) }}</div>
+      </div>
     </div>
+    <div class="date-details__day">{{ getStringDay(date) }}</div>
   </div>
 </template>
 
@@ -15,6 +33,16 @@
 .date-details {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  &__day {
+    font-size: 14px;
+    @include medium-date;
+  }
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
 
   &__number-day {
     font-size: 38px;
