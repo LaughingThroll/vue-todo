@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Checkbox from './Checkbox.vue'
 
 interface TodoItemProps {
@@ -6,16 +7,26 @@ interface TodoItemProps {
   isCompleted?: boolean
 }
 
-withDefaults(defineProps<TodoItemProps>(), {
+const props = withDefaults(defineProps<TodoItemProps>(), {
   isCompleted: false,
 })
+
+const isCompleted = ref(props.isCompleted)
+
+const toggleTodoItem = (isOutCompleted: boolean) => {
+  isCompleted.value = isOutCompleted
+}
 </script>
 
 <template>
   <div class="todoItem" :class="{ 'todoItem--isCompleted': isCompleted }">
     <div class="todoItem__content">{{ content }}</div>
     <div class="todoItem__actions">
-      <Checkbox class="todoItem__action" />
+      <Checkbox
+        class="todoItem__action"
+        @toggle-checkbox="toggleTodoItem"
+        :is-completed="isCompleted"
+      />
     </div>
   </div>
 </template>

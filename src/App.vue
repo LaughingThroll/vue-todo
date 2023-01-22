@@ -11,7 +11,7 @@ import TodoItem from './components/TodoItem.vue'
         <DateNavigation />
       </template>
       <template #body>
-        <TodoItem content="Hello World" />
+        <TodoItem content="Hello World" is-completed />
         <TodoItem content="Hello World" />
         <TodoItem content="Hello World" />
         <TodoItem content="Hello World" />

@@ -8,7 +8,15 @@ interface CheckboxEmits {
 
 defineEmits<CheckboxEmits>()
 
-const isCompleted = ref(false)
+interface CheckboxProps {
+  isCompleted?: boolean
+}
+
+const props = withDefaults(defineProps<CheckboxProps>(), {
+  isCompleted: false,
+})
+
+const isCompleted = ref(props.isCompleted)
 
 const toggleCheckbox = () => {
   isCompleted.value = !isCompleted.value
@@ -34,8 +42,8 @@ const toggleCheckbox = () => {
 @import './../styles/colors';
 
 .checkbox {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: 1px solid $main-border;
   padding: 2px;
