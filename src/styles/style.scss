@@ -2,6 +2,12 @@
 @import './colors';
 @import './mixins';
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
   background-color: $main-bg;
   font-family: 'Ubuntu', sans-serif;
