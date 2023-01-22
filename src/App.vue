@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
+import TodoItem from './components/TodoItem.vue'
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import DateNavigation from './components/DateNavigation.vue'
         <DateNavigation />
       </template>
       <template #body>
-        <div>Hello Body</div>
+        <TodoItem content="Hello World" />
       </template>
       <template #footer>
         <div>Hello Footer</div>
