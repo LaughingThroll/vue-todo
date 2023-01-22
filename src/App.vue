@@ -1,7 +1,80 @@
 <script setup lang="ts">
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
-import TodoItem from './components/TodoItem.vue'
+import TodoList from './components/TodoList.vue'
+import type { Todo } from './types'
+const todos: Todo[] = [
+  {
+    id: 1,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 2,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 3,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 4,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 5,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 6,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 7,
+    content: 'Hello World',
+    isCompleted: true,
+  },
+  {
+    id: 8,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 9,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 10,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 11,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 12,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 13,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+  {
+    id: 14,
+    content: 'Hello World',
+    isCompleted: false,
+  },
+]
 </script>
 
 <template>
@@ -11,36 +84,7 @@ import TodoItem from './components/TodoItem.vue'
         <DateNavigation />
       </template>
       <template #body>
-        <TodoItem content="Hello World" is-completed />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
-        <TodoItem content="Hello World" />
+        <TodoList :todos="todos" />
       </template>
       <template #footer>
         <div>Hello Footer</div>

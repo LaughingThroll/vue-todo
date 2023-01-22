@@ -37,6 +37,7 @@ const toggleTodoItem = (isOutCompleted: boolean) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 5px;
 
   &__content {
     text-align: left;
