@@ -2,7 +2,7 @@
 import Arrow from '../assets/arrow.svg?component'
 
 interface ArrowButtonProps {
-  direction: 'left' | 'right'
+  direction?: 'left' | 'right'
 }
 
 withDefaults(defineProps<ArrowButtonProps>(), {
