@@ -17,7 +17,7 @@
   width: 320px;
   min-height: 400px;
   background-color: $white;
-  padding: 40px 20px;
+  padding: 40px 14px;
   text-align: center;
   display: flex;
   flex-direction: column;
