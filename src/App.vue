@@ -2,7 +2,9 @@
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
 import TodoList from './components/TodoList.vue'
+import PlusButton from './components/PlusButton.vue'
 import type { Todo } from './types'
+
 const todos: Todo[] = [
   {
     id: 1,
@@ -78,7 +80,7 @@ const todos: Todo[] = [
 </script>
 
 <template>
-  <main class="main">
+  <div class="main">
     <MainCard>
       <template #header>
         <DateNavigation />
@@ -87,10 +89,10 @@ const todos: Todo[] = [
         <TodoList :todos="todos" />
       </template>
       <template #footer>
-        <div>Hello Footer</div>
+        <PlusButton />
       </template>
     </MainCard>
-  </main>
+  </div>
 </template>
 
 <style scoped lang="scss">
