@@ -1,12 +1,5 @@
-<script setup lang="ts">
-interface PlusButtonEmits {
-  onClick?: () => void
-}
-
-defineEmits<PlusButtonEmits>()
-</script>
 <template>
-  <button class="plusButton" @click="$emit('onClick')"></button>
+  <button class="plusButton"></button>
 </template>
 <style scoped lang="scss">
 @import '../styles/colors';

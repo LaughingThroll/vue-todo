@@ -3,7 +3,19 @@ import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
 import TodoList from './components/TodoList.vue'
 import PlusButton from './components/PlusButton.vue'
+import Modal from './components/Modal.vue'
 import type { Todo } from './types'
+import { ref } from 'vue'
+
+const isVisible = ref(false)
+
+const openModal = () => {
+  isVisible.value = true
+}
+
+const closeModal = () => {
+  isVisible.value = false
+}
 
 const todos: Todo[] = [
   {
@@ -89,9 +101,10 @@ const todos: Todo[] = [
         <TodoList :todos="todos" />
       </template>
       <template #footer>
-        <PlusButton />
+        <PlusButton @click="openModal" />
       </template>
     </MainCard>
+    <Modal :isVisible="isVisible" @on-close="closeModal" />
   </div>
 </template>
 
