@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import CheckIcon from './../../assets/check.svg?component'
+import CheckIcon from '@/assets/check.svg?component'
 
 interface CheckboxEmits {
   toggleCheckbox?: (isCompleted: boolean) => void
@@ -46,7 +46,7 @@ watch(
 </template>
 
 <style scoped lang="scss">
-@import './../../styles/colors';
+@import '../../styles/colors';
 
 .checkbox {
   width: 25px;

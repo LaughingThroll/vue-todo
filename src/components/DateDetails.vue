@@ -29,7 +29,7 @@ const getStringDay = (date: Date) => {
 </template>
 
 <style scoped lang="scss">
-@import './../styles/mixins';
+@import '@/styles/mixins';
 .date-details {
   display: flex;
   align-items: center;

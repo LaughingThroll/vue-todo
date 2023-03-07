@@ -11,7 +11,7 @@
 </template>
 
 <style scoped lang="scss">
-@import './../styles/_colors.scss';
+@import '@/styles/_colors.scss';
 
 .mainCard {
   position: relative;

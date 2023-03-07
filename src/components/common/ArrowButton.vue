@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Arrow from '../assets/arrow.svg?component'
+import Arrow from '@/assets/arrow.svg?component'
 
 interface ArrowButtonProps {
   direction?: 'left' | 'right'

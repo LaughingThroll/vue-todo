@@ -2,7 +2,7 @@
   <button class="plusButton"></button>
 </template>
 <style scoped lang="scss">
-@import './../../styles/colors';
+@import '@/styles/colors';
 
 .plusButton {
   position: relative;

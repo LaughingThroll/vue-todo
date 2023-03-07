@@ -31,7 +31,7 @@ defineEmits<TodoItemEmits>()
 </template>
 
 <style scoped lang="scss">
-@import './../styles/colors';
+@import '@/styles/colors';
 .todoItem {
   display: flex;
   align-items: center;
