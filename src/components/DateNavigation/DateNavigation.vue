@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import ArrowButton from './common/ArrowButton.vue'
+import ArrowButton from '../common/ArrowButton.vue'
 import DateDetails from './DateDetails.vue'
 
 import { getFormattedDate } from '@/utils'

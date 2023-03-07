@@ -2,10 +2,10 @@
 import { ref, watchEffect, onMounted } from 'vue'
 
 import MainCard from './components/MainCard.vue'
-import DateNavigation from './components/DateNavigation.vue'
-import TodoList from './components/TodoList.vue'
+import DateNavigation from './components/DateNavigation/DateNavigation.vue'
+import TodoList from './components/Todo/TodoList.vue'
 import PlusButton from './components/common/PlusButton.vue'
-import TodoModal from './components/TodoModal.vue'
+import TodoModal from './components/Todo/TodoModal.vue'
 
 import { addTodo, getTodos, toggleTodo } from './api/TodoService'
 import { getFormattedDate } from './utils'
@@ -16,8 +16,6 @@ const todos = ref<Todo[]>([])
 const currentDate = ref(getFormattedDate(new Date()))
 
 onMounted(() => {
-  console.log(getTodos(currentDate.value))
-
   todos.value = getTodos(currentDate.value)
 })
 
@@ -39,6 +37,8 @@ const saveTodo = (title: string) => {
     title,
     isCompleted: false,
   }
+  console.log('title', title)
+
   addTodo(currentDate.value, newTodo)
   todos.value.push(newTodo)
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TodoItem from './TodoItem.vue'
-import type { Id, Todo } from './../types'
+import type { Id, Todo } from '../../types'
 
 interface TodoListEmits {
   toggleTodo?: (todoId: Id) => void

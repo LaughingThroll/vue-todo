@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Checkbox from './common/Checkbox.vue'
+import Checkbox from '../common/Checkbox.vue'
 
 interface TodoItemEmits {
   toggleTodo?: () => void
