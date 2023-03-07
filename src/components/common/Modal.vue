@@ -29,7 +29,7 @@ defineEmits<ModalEmits>()
 </template>
 
 <style scoped lang="scss">
-@import './../styles/colors';
+@import './../../styles/colors';
 
 .overlay {
   position: fixed;

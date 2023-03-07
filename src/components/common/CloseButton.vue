@@ -2,7 +2,7 @@
   <button class="closeButton"></button>
 </template>
 <style scoped lang="scss">
-@import './../styles/colors';
+@import './../../styles/colors';
 
 .closeButton {
   position: relative;

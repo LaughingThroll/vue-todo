@@ -1,94 +1,53 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
 import TodoList from './components/TodoList.vue'
-import PlusButton from './components/PlusButton.vue'
-import Modal from './components/Modal.vue'
-import type { Todo } from './types'
-import { ref } from 'vue'
+import PlusButton from './components/common/PlusButton.vue'
+import Modal from './components/common/Modal.vue'
+
+import type { Id, Todo } from './types'
+import { addTodo, getTodos, toggleTodo } from './api/TodoService'
 
 const isVisible = ref(false)
+const todoTitle = ref('')
+const todos = ref<Todo[]>([])
+
+onMounted(() => {
+  todos.value = getTodos()
+})
 
 const openModal = () => {
   isVisible.value = true
+  todoTitle.value = ''
 }
 
 const closeModal = () => {
   isVisible.value = false
 }
 
-const todos: Todo[] = [
-  {
-    id: 1,
-    content: 'Hello World',
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  todoTitle.value = target.value
+}
+
+const saveTodo = () => {
+  const newTodo = {
+    id: Math.random().toString(),
+    title: todoTitle.value,
     isCompleted: false,
-  },
-  {
-    id: 2,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 3,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 4,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 5,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 6,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 7,
-    content: 'Hello World',
-    isCompleted: true,
-  },
-  {
-    id: 8,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 9,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 10,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 11,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 12,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 13,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-  {
-    id: 14,
-    content: 'Hello World',
-    isCompleted: false,
-  },
-]
+  }
+  addTodo(newTodo)
+  todos.value.push(newTodo)
+
+  closeModal()
+}
+
+const onToggleTodo = (todoId: Id) => {
+  toggleTodo(todoId)
+  todos.value = getTodos()
+}
 </script>
 
 <template>
@@ -98,13 +57,33 @@ const todos: Todo[] = [
         <DateNavigation />
       </template>
       <template #body>
-        <TodoList :todos="todos" />
+        <TodoList
+          v-if="!!todos.length"
+          :todos="todos"
+          @toggle-todo="onToggleTodo"
+        />
+        <div v-else>Create your first Todo</div>
       </template>
       <template #footer>
         <PlusButton @click="openModal" />
       </template>
     </MainCard>
-    <Modal :isVisible="isVisible" @on-close="closeModal" />
+    <Modal :isVisible="isVisible" @on-close="closeModal">
+      <template #body>
+        <div class="modal-body">
+          <h2>Add Todo</h2>
+          <div>
+            <input :value="todoTitle" @input="handleInput" />
+          </div>
+        </div>
+      </template>
+      <template #footer>
+        <div class="modal-footer">
+          <button @click="closeModal">Cancel</button>
+          <button @click="saveTodo">Save</button>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -114,5 +93,9 @@ const todos: Todo[] = [
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+
+.modal-body {
+  text-align: center;
 }
 </style>

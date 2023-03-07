@@ -17,7 +17,7 @@ withDefaults(defineProps<ArrowButtonProps>(), {
 </template>
 
 <style scope lang="scss">
-@import './../styles/colors';
+@import './../../styles/colors';
 
 .arrow {
   display: flex;

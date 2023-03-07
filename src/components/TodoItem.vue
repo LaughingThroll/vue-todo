@@ -1,30 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Checkbox from './Checkbox.vue'
+import Checkbox from './common/Checkbox.vue'
+
+interface TodoItemEmits {
+  toggleTodo?: () => void
+}
 
 interface TodoItemProps {
-  content: string
+  title: string
   isCompleted?: boolean
 }
 
-const props = withDefaults(defineProps<TodoItemProps>(), {
+withDefaults(defineProps<TodoItemProps>(), {
   isCompleted: false,
 })
 
-const isCompleted = ref(props.isCompleted)
-
-const toggleTodoItem = () => {
-  isCompleted.value = !isCompleted.value
-}
+defineEmits<TodoItemEmits>()
 </script>
 
 <template>
   <button
     class="todoItem"
-    @click="toggleTodoItem"
+    @click="$emit('toggleTodo')"
     :class="{ 'todoItem--isCompleted': isCompleted }"
   >
-    <div class="todoItem__content">{{ content }}</div>
+    <div class="todoItem__content">{{ title }}</div>
     <div class="todoItem__actions">
       <Checkbox class="todoItem__action" :is-completed="isCompleted" />
     </div>

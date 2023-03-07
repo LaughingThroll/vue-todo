@@ -1,5 +1,7 @@
+export type Id = string
+
 export interface Todo {
-  id: number
-  content: string
+  id: Id
+  title: string
   isCompleted: boolean
 }

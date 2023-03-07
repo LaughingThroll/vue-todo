@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ArrowButton from './ArrowButton.vue'
+import ArrowButton from './common/ArrowButton.vue'
 import DateDetails from './DateDetails.vue'
 
 const DEFAULT_INTERVAL_DATE = 1
