@@ -2,21 +2,29 @@ import { Id, Todo } from '../types'
 
 const TODO_KEY = 'todos'
 
-export const getTodos = (): Todo[] => {
-  const todos = localStorage.getItem(TODO_KEY)
-  if (todos) {
-    return JSON.parse(todos)
+export const getTodos = (date: string): Todo[] => {
+  const todoList = localStorage.getItem(TODO_KEY)
+  if (todoList) {
+    return JSON.parse(todoList)[date] || []
   }
   return []
 }
 
-export const addTodo = (todo: Todo) => {
-  const todos = getTodos()
-  localStorage.setItem(TODO_KEY, JSON.stringify([...todos, todo]))
+export const addTodo = (date: string, todo: Todo) => {
+  const todoList = JSON.parse(localStorage.getItem(TODO_KEY) || '')
+  const todos = getTodos(date)
+  localStorage.setItem(
+    TODO_KEY,
+    JSON.stringify({
+      ...todoList,
+      [date]: [...todos, todo],
+    })
+  )
 }
 
-export const toggleTodo = (todoId: Id) => {
-  const todos = getTodos()
+export const toggleTodo = (date: string, todoId: Id) => {
+  const todoList = JSON.parse(localStorage.getItem(TODO_KEY) || '')
+  const todos = getTodos(date)
   const newTodos = todos.map((todo) => {
     if (todo.id === todoId) {
       return {
@@ -27,5 +35,8 @@ export const toggleTodo = (todoId: Id) => {
     return todo
   })
 
-  localStorage.setItem(TODO_KEY, JSON.stringify(newTodos))
+  localStorage.setItem(
+    TODO_KEY,
+    JSON.stringify({ ...todoList, [date]: newTodos })
+  )
 }

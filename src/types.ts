@@ -5,3 +5,7 @@ export interface Todo {
   title: string
   isCompleted: boolean
 }
+
+export interface TodoList {
+  [key: string]: Todo[]
+}

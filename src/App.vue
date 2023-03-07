@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
@@ -8,13 +8,21 @@ import PlusButton from './components/common/PlusButton.vue'
 import TodoModal from './components/TodoModal.vue'
 
 import { addTodo, getTodos, toggleTodo } from './api/TodoService'
+import { getFormattedDate } from './utils'
 import type { Id, Todo } from './types'
 
 const isVisible = ref(false)
 const todos = ref<Todo[]>([])
+const currentDate = ref(getFormattedDate(new Date()))
 
 onMounted(() => {
-  todos.value = getTodos()
+  console.log(getTodos(currentDate.value))
+
+  todos.value = getTodos(currentDate.value)
+})
+
+watchEffect(() => {
+  todos.value = getTodos(currentDate.value)
 })
 
 const openModal = () => {
@@ -31,15 +39,19 @@ const saveTodo = (title: string) => {
     title,
     isCompleted: false,
   }
-  addTodo(newTodo)
+  addTodo(currentDate.value, newTodo)
   todos.value.push(newTodo)
 
   closeModal()
 }
 
 const onToggleTodo = (todoId: Id) => {
-  toggleTodo(todoId)
-  todos.value = getTodos()
+  toggleTodo(currentDate.value, todoId)
+  todos.value = getTodos(currentDate.value)
+}
+
+const onChangeDate = (date: string) => {
+  currentDate.value = date
 }
 </script>
 
@@ -47,7 +59,7 @@ const onToggleTodo = (todoId: Id) => {
   <div class="main">
     <MainCard>
       <template #header>
-        <DateNavigation />
+        <DateNavigation @on-change-date="onChangeDate" />
       </template>
       <template #body>
         <TodoList

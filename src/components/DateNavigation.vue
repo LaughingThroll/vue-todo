@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import ArrowButton from './common/ArrowButton.vue'
 import DateDetails from './DateDetails.vue'
+
+import { getFormattedDate } from '@/utils'
+
+interface DateNavigationProps {
+  (e: 'onChangeDate', date: string): void
+}
+
+const emit = defineEmits<DateNavigationProps>()
 
 const DEFAULT_INTERVAL_DATE = 1
 const currentDate = ref(new Date())
@@ -14,6 +22,10 @@ const getNextDate = (date: Date) => {
   const newDate = date.setDate(date.getDate() + DEFAULT_INTERVAL_DATE)
   currentDate.value = new Date(newDate)
 }
+
+watchEffect(() => {
+  emit('onChangeDate', getFormattedDate(currentDate.value))
+})
 </script>
 
 <template>
