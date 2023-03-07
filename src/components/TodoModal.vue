@@ -4,8 +4,8 @@ import Modal from '@/components/common/Modal.vue'
 import Button from '@/components/common/Button.vue'
 
 interface TodoModalEmits {
-  onClose?: () => void
-  onSave?: (title: string) => void
+  (e: 'onClose'): void
+  (e: 'onSave', title: string): void
 }
 
 interface TodoModalProps {
@@ -20,10 +20,10 @@ const handleInput = (event: Event) => {
 }
 
 const { isVisible } = defineProps<TodoModalProps>()
-const { onClose } = defineEmits<TodoModalEmits>()
+const emit = defineEmits<TodoModalEmits>()
 
 const onCloseModal = () => {
-  onClose?.()
+  emit('onClose')
   todoTitle.value = ''
 }
 </script>
@@ -34,7 +34,7 @@ const onCloseModal = () => {
       <div class="todo-modal__body">
         <h2>Add Todo</h2>
         <div>
-          <input :value="todoTitle" @input="handleInput" />
+          <input :value="todoTitle" @input.trim="handleInput" />
         </div>
       </div>
     </template>
