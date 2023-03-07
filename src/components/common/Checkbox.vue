@@ -46,7 +46,7 @@ watch(
 </template>
 
 <style scoped lang="scss">
-@import '../../styles/colors';
+@import '@/styles/colors';
 
 .checkbox {
   width: 25px;
