@@ -26,6 +26,11 @@ const onCloseModal = () => {
   emit('onClose')
   todoTitle.value = ''
 }
+
+const onSave = () => {
+  if (!todoTitle.value) return
+  emit('onSave', todoTitle.value)
+}
 </script>
 
 <template>
@@ -43,9 +48,7 @@ const onCloseModal = () => {
         <Button class="todo-modal__button" @click="onCloseModal" is-secondary
           >Cancel</Button
         >
-        <Button class="todo-modal__button" @click="$emit('onSave', todoTitle)"
-          >Save</Button
-        >
+        <Button class="todo-modal__button" @click="onSave">Save</Button>
       </div>
     </template>
   </Modal>
