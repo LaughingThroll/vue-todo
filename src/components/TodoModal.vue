@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Modal from '@/components/common/Modal.vue'
 import Button from '@/components/common/Button.vue'
+import Input from '@/components/common/Input.vue'
 
 interface TodoModalEmits {
   (e: 'onClose'): void
@@ -13,11 +14,7 @@ interface TodoModalProps {
 }
 
 const todoTitle = ref('')
-
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  todoTitle.value = target.value
-}
+const todoTitleError = ref('')
 
 const { isVisible } = defineProps<TodoModalProps>()
 const emit = defineEmits<TodoModalEmits>()
@@ -25,11 +22,23 @@ const emit = defineEmits<TodoModalEmits>()
 const onCloseModal = () => {
   emit('onClose')
   todoTitle.value = ''
+  todoTitleError.value = ''
 }
 
 const onSave = () => {
-  if (!todoTitle.value) return
+  if (!todoTitle.value) {
+    todoTitleError.value = 'This field is required'
+    return
+  }
   emit('onSave', todoTitle.value)
+  todoTitle.value = ''
+  todoTitleError.value = ''
+}
+
+const resetError = (value: string) => {
+  if (value) {
+    todoTitleError.value = ''
+  }
 }
 </script>
 
@@ -39,7 +48,15 @@ const onSave = () => {
       <div class="todo-modal__body">
         <h2>Add Todo</h2>
         <div>
-          <input :value="todoTitle" @input.trim="handleInput" />
+          <Input
+            v-model:value="todoTitle"
+            @update:value="resetError"
+            :errorMessage="todoTitleError"
+            id="todo-title"
+            label-title="Title"
+            placeholder="Enter todo title..."
+            is-required
+          />
         </div>
       </div>
     </template>

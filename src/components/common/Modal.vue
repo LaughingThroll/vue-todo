@@ -68,11 +68,12 @@ defineEmits<ModalEmits>()
 
   &__body {
     flex: 1 1 auto;
+    padding: 0 10px;
   }
 
   &__footer {
     border-top: 1px solid $main-border;
-    padding: 10px 15px;
+    padding: 10px;
   }
 }
 </style>
