@@ -45,9 +45,12 @@ defineEmits<ModalEmits>()
   max-width: 450px;
   min-width: 320px;
   min-height: 300px;
+  max-height: 400px;
   border-radius: 6px;
   overflow: hidden;
   background-color: $white;
+  display: flex;
+  flex-direction: column;
 
   &__header {
     position: relative;
@@ -61,6 +64,15 @@ defineEmits<ModalEmits>()
     top: 0;
     right: 10px;
     transform: translate(0, 30%);
+  }
+
+  &__body {
+    flex: 1 1 auto;
+  }
+
+  &__footer {
+    border-top: 1px solid $main-border;
+    padding: 10px 15px;
   }
 }
 </style>

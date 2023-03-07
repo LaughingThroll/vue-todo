@@ -5,13 +5,12 @@ import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation.vue'
 import TodoList from './components/TodoList.vue'
 import PlusButton from './components/common/PlusButton.vue'
-import Modal from './components/common/Modal.vue'
+import TodoModal from './components/TodoModal.vue'
 
-import type { Id, Todo } from './types'
 import { addTodo, getTodos, toggleTodo } from './api/TodoService'
+import type { Id, Todo } from './types'
 
 const isVisible = ref(false)
-const todoTitle = ref('')
 const todos = ref<Todo[]>([])
 
 onMounted(() => {
@@ -20,22 +19,16 @@ onMounted(() => {
 
 const openModal = () => {
   isVisible.value = true
-  todoTitle.value = ''
 }
 
 const closeModal = () => {
   isVisible.value = false
 }
 
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  todoTitle.value = target.value
-}
-
-const saveTodo = () => {
+const saveTodo = (title: string) => {
   const newTodo = {
     id: Math.random().toString(),
-    title: todoTitle.value,
+    title,
     isCompleted: false,
   }
   addTodo(newTodo)
@@ -68,22 +61,11 @@ const onToggleTodo = (todoId: Id) => {
         <PlusButton @click="openModal" />
       </template>
     </MainCard>
-    <Modal :isVisible="isVisible" @on-close="closeModal">
-      <template #body>
-        <div class="modal-body">
-          <h2>Add Todo</h2>
-          <div>
-            <input :value="todoTitle" @input="handleInput" />
-          </div>
-        </div>
-      </template>
-      <template #footer>
-        <div class="modal-footer">
-          <button @click="closeModal">Cancel</button>
-          <button @click="saveTodo">Save</button>
-        </div>
-      </template>
-    </Modal>
+    <TodoModal
+      :is-visible="isVisible"
+      @on-close="closeModal"
+      @on-save="saveTodo"
+    />
   </div>
 </template>
 
@@ -93,9 +75,5 @@ const onToggleTodo = (todoId: Id) => {
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
-
-.modal-body {
-  text-align: center;
 }
 </style>
