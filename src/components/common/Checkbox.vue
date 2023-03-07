@@ -10,6 +10,7 @@ defineEmits<CheckboxEmits>()
 
 interface CheckboxProps {
   isCompleted?: boolean
+  isSelected?: boolean
 }
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
@@ -33,7 +34,10 @@ watch(
 <template>
   <button
     class="checkbox"
-    :class="{ 'checkbox--isCompleted': isCompleted }"
+    :class="{
+      'checkbox--is-completed': isCompleted,
+      'checkbox--is-selected': isSelected,
+    }"
     @click="
       () => {
         toggleCheckbox()
@@ -51,8 +55,6 @@ watch(
 .checkbox {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  border: 1px solid $main-border;
   padding: 2px;
   display: flex;
   align-items: center;
@@ -63,9 +65,8 @@ watch(
     max-height: 100%;
     fill: $main-green;
   }
-
-  &--isCompleted {
-    border: 1px solid $main-green;
+  &--is-selected .checkbox__icon {
+    fill: $white;
   }
 }
 </style>

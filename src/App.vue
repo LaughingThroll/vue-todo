@@ -14,6 +14,7 @@ import type { Id, Todo } from './types'
 const isVisible = ref(false)
 const todos = ref<Todo[]>([])
 const currentDate = ref(getFormattedDate(new Date()))
+const selectedTodo = ref<Todo | null>(null)
 
 onMounted(() => {
   todos.value = getTodos(currentDate.value)
@@ -37,7 +38,6 @@ const saveTodo = (title: string) => {
     title,
     isCompleted: false,
   }
-  console.log('title', title)
 
   addTodo(currentDate.value, newTodo)
   todos.value.push(newTodo)
@@ -48,6 +48,10 @@ const saveTodo = (title: string) => {
 const onToggleTodo = (todoId: Id) => {
   toggleTodo(currentDate.value, todoId)
   todos.value = getTodos(currentDate.value)
+}
+
+const selectTodo = (todo: Todo) => {
+  selectedTodo.value = selectedTodo.value?.id === todo.id ? null : todo
 }
 
 const onChangeDate = (date: string) => {
@@ -65,7 +69,9 @@ const onChangeDate = (date: string) => {
         <TodoList
           v-if="!!todos.length"
           :todos="todos"
+          :selected-todo="selectedTodo"
           @toggle-todo="onToggleTodo"
+          @select-todo="selectTodo"
         />
         <div v-else>Create your first Todo</div>
       </template>

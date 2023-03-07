@@ -1,31 +1,61 @@
 <script setup lang="ts">
-import Checkbox from '../common/Checkbox.vue'
+import { ref } from 'vue'
+import Checkbox from '@/components/common/Checkbox.vue'
+import { Id, Todo } from '@/types'
 
 interface TodoItemEmits {
-  toggleTodo?: () => void
+  (e: 'toggleTodo', todoId: Id): void
+  (e: 'selectTodo', todo: Todo): void
 }
 
 interface TodoItemProps {
-  title: string
-  isCompleted?: boolean
+  todo: Todo
+  isSelected?: boolean
 }
 
-withDefaults(defineProps<TodoItemProps>(), {
-  isCompleted: false,
-})
+const { todo } = defineProps<TodoItemProps>()
+const emit = defineEmits<TodoItemEmits>()
 
-defineEmits<TodoItemEmits>()
+const counterClicks = ref(0)
+const timerId = ref<number>(0)
+
+const singleClick = () => {
+  counterClicks.value++
+  if (counterClicks.value === 1) {
+    timerId.value = setTimeout(() => {
+      emit('selectTodo', todo)
+      counterClicks.value = 0
+    }, 200)
+  }
+}
+
+const dblClick = () => {
+  counterClicks.value++
+  if (counterClicks.value !== 1) {
+    clearTimeout(timerId.value)
+    emit('toggleTodo', todo.id)
+    counterClicks.value = 0
+  }
+}
 </script>
 
 <template>
   <button
     class="todoItem"
-    @click="$emit('toggleTodo')"
-    :class="{ 'todoItem--isCompleted': isCompleted }"
+    @click="singleClick"
+    @dblclick="dblClick"
+    :class="{
+      'todoItem--is-completed': todo.isCompleted,
+      'todoItem--is-selected': isSelected,
+    }"
   >
-    <div class="todoItem__content">{{ title }}</div>
+    <div class="todoItem__content">{{ todo.title }}</div>
     <div class="todoItem__actions">
-      <Checkbox class="todoItem__action" :is-completed="isCompleted" />
+      <Checkbox
+        class="todoItem__action"
+        :is-selected="isSelected"
+        :is-completed="todo.isCompleted"
+      />
     </div>
   </button>
 </template>
@@ -53,7 +83,11 @@ defineEmits<TodoItemEmits>()
     margin-right: 5px;
   }
 
-  &--isCompleted {
+  &--is-selected.todoItem--is-selected {
+    color: $white;
+  }
+
+  &--is-completed {
     color: $main-disable;
   }
 }

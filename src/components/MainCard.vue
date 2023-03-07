@@ -31,7 +31,6 @@
   }
 
   &__header,
-  &__body,
   &__footer {
     padding: 0 14px;
   }
