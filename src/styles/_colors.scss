@@ -1,14 +1,22 @@
 $white: #fff;
 $black: #000;
 
+$red-1: #e74c3c;
+$blue-1: #2980b9;
+
 $main-bg: #f0efea;
 $main-green: #51e3a3;
-$plus-icon-green: #3fcb8e;
+$main-red: $red-1;
+$main-blue: $blue-1;
+$main-disable: #e8e8e8;
+$main-error: $red-1;
+$main-border: #808080;
+
+$plus-icon: #3fcb8e;
+$trash-icon: darken($red-1, 30%);
+$pencil-icon: darken($blue-1, 30%);
 $button-hover: #3fcb8e;
 $input-border: #3fcb8e;
 $selected-item: #78e08f;
-$main-disable: #e8e8e8;
-$main-error: #e74c3c;
-$main-border: #808080;
 $overlay: rgba(0, 0, 0, 0.5);
 $font: #5f6065;
