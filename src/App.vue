@@ -4,7 +4,7 @@ import { ref, watchEffect, onMounted } from 'vue'
 import MainCard from './components/MainCard.vue'
 import DateNavigation from './components/DateNavigation/DateNavigation.vue'
 import TodoList from './components/Todo/TodoList.vue'
-import CircleButton from './components/common/CircleButton.vue'
+import CircleButtons from './components/common/CircleButtons.vue'
 import TodoModal from './components/Todo/TodoModal.vue'
 
 import { addTodo, getTodos, toggleTodo } from './api/TodoService'
@@ -76,7 +76,9 @@ const onChangeDate = (date: string) => {
         <div v-else>Create your first Todo</div>
       </template>
       <template #footer>
-        <CircleButton @click="openModal" />
+        <div class="main__button">
+          <CircleButtons :icons="['plus', 'trash', 'pencil']" />
+        </div>
       </template>
     </MainCard>
     <TodoModal
@@ -93,5 +95,11 @@ const onChangeDate = (date: string) => {
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    transform: translate(0, 50%);
+  }
 }
 </style>

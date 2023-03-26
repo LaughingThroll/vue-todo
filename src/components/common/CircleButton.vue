@@ -3,7 +3,8 @@ import TrashIcon from '@/assets/trash.svg?component'
 import PencilIcon from '@/assets/pencil.svg?component'
 
 interface CircleButton {
-  icon: 'plus' | 'trash' | 'pencil'
+  // icon: 'plus' | 'trash' | 'pencil'
+  icon: string
 }
 
 withDefaults(defineProps<CircleButton>(), {

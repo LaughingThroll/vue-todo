@@ -40,7 +40,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    transform: translate(100%, 50%);
+    width: 100%;
   }
 }
 </style>
